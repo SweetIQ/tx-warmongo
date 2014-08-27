@@ -9,15 +9,15 @@ def parse_requirements():
 
 
 setuptools.setup(
-    name='warmongo',
-    version='0.5.2',
+    name='tx-warmongo',
+    version='0.1.0',
     description='JSON-Schema-based ORM for MongoDB',
     author='Rob Britton',
     author_email='rob@robbritton.com',
-    url='http://github.com/robbrit/warmongo',
-    keywords=["mongodb", "jsonschema"],
-    packages=['warmongo'],
-    package_data={"warmongo": ["requirements.txt"]},
+    url='http://github.com/SweetiQ/tx-warmongo',
+    keywords=["mongodb", "jsonschema", "twisted"],
+    packages=['txwarmongo'],
+    package_data={"tx-warmongo": ["requirements.txt"]},
     include_package_data=True,
     install_requires=parse_requirements(),
     classifiers=[
@@ -32,6 +32,6 @@ setuptools.setup(
   ---------------------------------
 
   Allows you to build models validated against a JSON-schema file, and save
-  them to MongoDB.
+  them to MongoDB. This version is built off of Twisted for performance.
 """,
 )
