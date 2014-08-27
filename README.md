@@ -13,6 +13,18 @@ This extends the JSON schema by supporting extra BSON types:
 
 # Usage
 
+Note: most of the calls in tx-warmongo are asynchronous calls and return a
+`Deferred` object. It is highly advised to use `defer.inlineCallbacks` with
+your code:
+
+    @defer.inlineCallbacks
+    def foo():
+        results = yield Country.find_all()
+
+        for result in results:
+            result.field = "some value"
+            yield result.save()
+
 1) Build your schema
 
 	>>> schema = {
@@ -26,17 +38,17 @@ This extends the JSON schema by supporting extra BSON types:
 
 2) Connect to your database
 
-    >>> import warmongo
-    >>> warmongo.connect("test")
+    >>> import txwarmongo
+    >>> yield txwarmongo.connect("test")
 
 3) Create a model
 
-    >>> Country = warmongo.model_factory(schema)
+    >>> Country = txwarmongo.model_factory(schema)
 
 4) Create an object using your model
 
     >>> sweden = Country({"name": 'Sweden', "abbreviation": 'SE'})
-    >>> sweden.save()
+    >>> yield sweden.save()
     >>> sweden._id
     ObjectId('50b506916ee7d81d42ca2190')
 
@@ -77,9 +89,9 @@ you want to use something else, put it in the JSON-schema:
 
 To use multiple databases, simply call `connect()` multiple times:
 
-    >>> import warmongo
-    >>> warmongo.connect("test")
-    >>> warmongo.connect("other_db")
+    >>> import txwarmongo
+    >>> yield txwarmongo.connect("test")
+    >>> yield txwarmongo.connect("other_db")
 
 By default all models will use the first database specified. If you want to use
 a different one, put it in the JSON-schema:
