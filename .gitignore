@@ -4,6 +4,8 @@ include
 lib
 local
 man
+dist
+tx_warmongo.egg-info
 
 # Trial
 _trial_temp
