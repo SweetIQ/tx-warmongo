@@ -1,0 +1,15 @@
+# Virtualenv stuff
+bin
+include
+lib
+local
+man
+
+# Trial
+_trial_temp
+
+# Python
+*.pyc
+
+# Vim
+*.swp
